@@ -1,0 +1,32 @@
+<!-- books.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>players</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <h1>players</h1>
+  <table class="player-table">
+    <tr>
+      <th>nameplayer</th>
+      <th>score</th>
+      <th>Actions</th>
+    </tr>
+    <% for(var i=0; i < players.length; i++) { %>
+    <tr>
+      <td><%= players[i].nameplayer %></td>
+      <td><%= players[i].score %></td>
+      <td>
+        <a href="/player/<%= players[i].id %>">View</a>
+        <a href="/update/<%= players[i].id %>">Edit</a>
+        <a href="/delete/<%= players[i].id %>">Delete</a>
+      </td>
+    </tr>
+    <% } %>
+  </table>
+  <div class="link-center">
+    <a href="/create">Create New player</a>
+  </div>
+</body>
+</html>

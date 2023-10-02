@@ -1,0 +1,26 @@
+<!-- book.ejs -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>player</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <h1>View player</h1>
+    <table class="player-table">
+      <tr>
+        <th>Player</th>
+        <th>score</th>
+      </tr>
+      <tr>
+        <td><%= player.nameplayer %></td>
+        <td><%= player.score %></td>
+      </tr>
+    </table>
+    <div class="link-center">
+      <a href="/update/<%= player.id %>">Edit</a>
+      <a href="/delete/<%= player.id %>">Delete</a>
+      <a href="/">Back to List</a>
+    </div>
+  </body>
+</html>
