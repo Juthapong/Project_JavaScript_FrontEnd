@@ -1,0 +1,30 @@
+<!-- books.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Teams</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <h1>Teams</h1>
+  <table class="team-table">
+    <tr>
+      <th>Teamname</th>
+      <th>Actions</th>
+    </tr>
+    <% for(var i=0; i < teams.length; i++) { %>
+    <tr>
+      <td><%= teams[i].teamname %></td>
+      <td>
+        <a href="/team/<%= teams[i].id %>">View</a>
+        <a href="/updateteam/<%= teams[i].id %>">Edit</a>
+        <a href="/deleteteam/<%= teams[i].id %>">Delete</a>
+      </td>
+    </tr>
+    <% } %>
+  </table>
+  <div class="link-center">
+    <a href="/createteam">Create New Team</a>
+  </div>
+</body>
+</html>

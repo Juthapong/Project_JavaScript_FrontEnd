@@ -20,16 +20,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Serve static files 
 app.use(express.static (__dirname + '/public')); 
-
-app.get("/", async (req, res) => { 
-    try { 
-        const response = await axios.get(base_url + '/players'); 
-        res.render("players", { players: response.data }); 
-    } catch (err) { 
-        console.error(err); 
-        res.status(500).send('Error'); 
-    } 
-}); 
+/*
+R
+U
+N
+Main
+*/
+// app.get("/", async (req, res) => { 
+//     try { 
+//         const response = await axios.get(base_url + '/players'); 
+//         res.render("players", { players: response.data }); 
+//     } catch (err) { 
+//         console.error(err); 
+//         res.status(500).send('Error'); 
+//     } 
+// }); 
 
 app.get("/player/:id", async (req, res) => { 
     try { 
@@ -88,7 +93,73 @@ app.get("/delete/:id", async (req, res) => {
         res.status(500).send('Error'); 
     } 
 }); 
+// app.get("/", async (req, res) => { 
+//   try { 
+//       const response = await axios.get(base_url + '/teams'); 
+//       res.render("teams", { teams: response.data }); 
+//   } catch (err) { 
+//       console.error(err); 
+//       res.status(500).send('Error'); 
+//   } 
+// }); 
 
+app.get("/team/:id", async (req, res) => { 
+  try { 
+      const response = await axios.get(base_url + '/teams/' + req.params.id); 
+      res.render("team", {team: response.data }); 
+  } catch (err) { 
+      console.error(err); 
+      res.status(500).send('Error'); 
+  } 
+});
+
+app.get("/createteam", (req, res) => { 
+  res.render("createTeam"); 
+}); 
+
+app.post("/createteam", async (req, res) => { 
+  try { 
+      const data = { teamname: req.body.teamname }; 
+      await axios.post (base_url + '/teams', data); 
+      res.redirect("/"); 
+  } catch (err) { 
+      console.error(err); 
+      res.status(500).send('Error'); 
+  } 
+}); 
+
+app.get("/updateteam/:id", async (req, res) => { 
+  try { 
+      const response = await axios.get( 
+          base_url + '/teams/' + req.params.id); 
+          res.render("updateteam", { team: response.data }); 
+      } catch (err) { 
+          console.error(err); 
+          res.status(500).send('Error'); 
+      } 
+  });
+
+app.post("/updateteam/:id", async (req, res) => { 
+  try { 
+      const data = { teamname: req.body.teamname }; 
+      await axios.put(base_url + '/teams/' + req.params.id, data); 
+      res.redirect("/"); 
+  } catch (err) { 
+      console.error(err); 
+      res.status(500).send('Error'); 
+  } 
+}); 
+
+
+app.get("/deleteteam/:id", async (req, res) => { 
+  try { 
+      await axios.delete(base_url + '/teams/' + req.params.id);
+          res.redirect("/");  
+  } catch (err) { 
+      console.error(err); 
+      res.status(500).send('Error'); 
+  } 
+}); 
 // app.listen(8080, () => { 
 //             console.log('Server started on port 8080'); 
 //             }); //ruk.com

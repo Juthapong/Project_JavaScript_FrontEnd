@@ -1,0 +1,20 @@
+<!--update.ejs --> 
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <title>Update Team</title> 
+        <link rel="stylesheet" href="../css/style.css"/>
+    </head> 
+    <body> 
+        <h1>Update Team</h1> 
+        <form method="post" action="/updateteam/<%= player. id %>"> 
+            <label for="teamname">teamname:</label> 
+            <input type="text" id="teamname" name="teamname" value="<%= team.teamname %>"> 
+            <br> 
+            <input type="submit" value="Updateteam"> 
+        </form> 
+        <a href="/team/<%= team. id %>">View</a> 
+        <a href="/deleteteam/<%= team. id %>">Delete</a> 
+        <a href="/">Back to List</a> 
+    </body> 
+    </html>
