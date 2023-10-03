@@ -18,6 +18,8 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+
+
 // Serve static files 
 app.use(express.static (__dirname + '/public')); 
 
@@ -183,6 +185,17 @@ app.post("/createscore", async (req, res) => {
       res.status(500).send('Error'); 
   } 
 }); 
+// app.get('/players', (req, res) => {
+//   db.all('SELECT playerId FROM players', [], (err, rows) => {
+//     if (err) {
+//       throw err;
+//     }
+//     const playerIds = rows.map(row => row.playerId);
+//     res.json(playerIds);
+//   });
+// });
+
+
 // app.listen(8080, () => { 
 //             console.log('Server started on port 8080'); 
 //             }); //ruk.com
