@@ -9,13 +9,12 @@
     <body> 
         <h1>Recode Score</h1> 
         <form method="post" action="/createscore"> 
-          <label for="playerId">Player:</label>
           <select id="playerId" name="playerId">
-            <option value="">Select a player</option>
-            <!-- Player options will be dynamically populated here -->
+            <!-- Options will be dynamically populated using JavaScript -->
           </select>
           <br>
-          
+        
+          <script src="script.js"></script>  
             <label for="teamId">teamId:</label> 
             <input type="text" id="teamId" name="teamId"> 
             <br>
@@ -24,23 +23,6 @@
             <br>
             <input type="submit" value="createscore"> 
         </form> 
-        <a href="/">Back to List</a>
-        <script>
-          // Fetch player IDs from the server using fetch API
-          fetch('/getPlayers')
-            .then(response => response.json())
-            .then(data => {
-              const playerIdDropdown = document.getElementById('playerId');
-        
-              // Populate the drop-down menu with player IDs
-              data.forEach(players => {
-                const option = document.createElement('option');
-                option.value = players.id;
-                option.innerText = players.id;
-                playerIdDropdown.appendChild(option);
-              });
-            })
-            .catch(error => console.error('Error fetching player IDs:', error));
-        </script> 
+        <a href="/">Back to List</a> 
     </body> 
     </html>
