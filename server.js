@@ -20,12 +20,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Serve static files 
 app.use(express.static (__dirname + '/public')); 
-/*
-R
-U
-N
-Main
-*/
+
+app.get("/", async (req, res) => { 
+  try { 
+      const response = await axios.get(base_url + '/scores'); 
+      res.render("scores", { scores: response.data }); 
+  } catch (err) { 
+      console.error(err); 
+      res.status(500).send('Error'); 
+  } 
+}); 
+
+
+app.get("/index", (req, res) => { 
+  res.render("index"); 
+}); 
 // app.get("/", async (req, res) => { 
 //     try { 
 //         const response = await axios.get(base_url + '/players'); 
@@ -36,15 +45,6 @@ Main
 //     } 
 // }); 
 
-app.get("/player/:id", async (req, res) => { 
-    try { 
-        const response = await axios.get(base_url + '/players/' + req.params.id); 
-        res.render("player", {player: response.data }); 
-    } catch (err) { 
-        console.error(err); 
-        res.status(500).send('Error'); 
-    } 
-});
 
 app.get("/create", (req, res) => { 
     res.render("create"); 
@@ -93,15 +93,15 @@ app.get("/delete/:id", async (req, res) => {
         res.status(500).send('Error'); 
     } 
 }); 
-// app.get("/", async (req, res) => { 
-//   try { 
-//       const response = await axios.get(base_url + '/teams'); 
-//       res.render("teams", { teams: response.data }); 
-//   } catch (err) { 
-//       console.error(err); 
-//       res.status(500).send('Error'); 
-//   } 
-// }); 
+app.get("/teams", async (req, res) => { 
+  try { 
+      const response = await axios.get(base_url + '/teams'); 
+      res.render("teams", { teams: response.data }); 
+  } catch (err) { 
+      console.error(err); 
+      res.status(500).send('Error'); 
+  } 
+}); 
 
 app.get("/team/:id", async (req, res) => { 
   try { 
@@ -155,6 +155,29 @@ app.get("/deleteteam/:id", async (req, res) => {
   try { 
       await axios.delete(base_url + '/teams/' + req.params.id);
           res.redirect("/");  
+  } catch (err) { 
+      console.error(err); 
+      res.status(500).send('Error'); 
+  } 
+}); 
+
+app.get("/players", async (req, res) => { 
+  try { 
+      const response = await axios.get(base_url + '/players'); 
+      res.render("players", { players: response.data }); 
+  } catch (err) { 
+      console.error(err); 
+      res.status(500).send('Error'); 
+  } 
+}); 
+app.get("/createscore", (req, res) => { 
+  res.render("createscore"); 
+}); 
+app.post("/createscore", async (req, res) => { 
+  try { 
+      const data = { playerId: req.body.playerId, teamId: req.body.teamId,score: req.body.score  }; 
+      await axios.post (base_url + '/scores', data); 
+      res.redirect("/"); 
   } catch (err) { 
       console.error(err); 
       res.status(500).send('Error'); 

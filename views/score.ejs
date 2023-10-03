@@ -2,22 +2,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Team</title>
+    <title>score</title>
     <link rel="stylesheet" href="../css/style.css" />
   </head>
   <body>
-    <h1>View Team</h1>
+    <h1>View score</h1>
     <table class="football-table">
       <tr>
-        <th>Team</th>
+        <th>score</th>
+       
       </tr>
       <tr>
-        <td><%= team.teamname %></td>
+        <td><%= score.playerId %></td>
+        <td><%= score.teamId %></td>
+        <td><%= score.score %></td>
       </tr>
     </table>
     <div class="link-center">
-      <a href="/updateteam/<%= team.id %>">Edit</a>
-      <a href="/deleteteam/<%= team.id %>">Delete</a>
+      <!-- <a href="/update/<%= player.id %>">Edit</a>
+      <a href="/delete/<%= player.id %>">Delete</a> -->
       <a href="/">Back to List</a>
     </div>
   </body>

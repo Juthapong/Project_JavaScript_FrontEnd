@@ -1,0 +1,38 @@
+<!-- books.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>scores</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <h1>scores</h1>
+  <div class="link-center">
+    <a href="/createscore">Recode New score</a>
+    <a href="/teams">View Team</a>
+    <a href="/players">View Player</a>
+  </div>
+  <table class="football-table">
+    <tr>
+      <th>playerId</th>
+      <th>teamId</th>
+      <th>score</th>
+      <th>Actions</th>
+    </tr>
+    <% for(var i=0; i < scores.length; i++) { %>
+    <tr>
+      <td><%= scores[i].playerId %></td>
+      <td><%= scores[i].teamId %></td>
+      <td><%= scores[i].score %></td>
+    
+      <td>
+        <!-- <a href="/score/<%= scores[i].id %>">View</a> -->
+        <a href="/update/<%= scores[i].id %>">Edit</a>
+        <a href="/delete/<%= scores[i].id %>">Delete</a>
+      </td>
+    </tr>
+    <% } %>
+  </table>
+  
+</body>
+</html>

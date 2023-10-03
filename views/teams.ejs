@@ -7,7 +7,10 @@
 </head>
 <body>
   <h1>Teams</h1>
-  <table class="team-table">
+  <div class="link-center">
+    <a href="/createteam">Add Team</a>
+  </div>
+  <table class="football-table">
     <tr>
       <th>Teamname</th>
       <th>Actions</th>
@@ -16,15 +19,13 @@
     <tr>
       <td><%= teams[i].teamname %></td>
       <td>
-        <a href="/team/<%= teams[i].id %>">View</a>
+        <!-- <a href="/team/<%= teams[i].id %>">View</a> -->
         <a href="/updateteam/<%= teams[i].id %>">Edit</a>
         <a href="/deleteteam/<%= teams[i].id %>">Delete</a>
       </td>
     </tr>
     <% } %>
   </table>
-  <div class="link-center">
-    <a href="/createteam">Create New Team</a>
-  </div>
+  
 </body>
 </html>
