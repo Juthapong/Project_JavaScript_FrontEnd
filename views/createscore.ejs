@@ -2,27 +2,27 @@
 <!DOCTYPE html> 
 <html> 
     <head> 
-        <title>Recode Score</title> 
+        <title>บันทึกข้อมูลการทำประตู</title> 
         <link rel="stylesheet" href="../css/style.css"/>
     </head> 
     
     <body> 
-        <h1>Recode Score</h1> 
+        <h1>บันทึกข้อมูลการทำประตู</h1> 
         <form method="post" action="/createscore"> 
-            <label for="playerId">playerId:</label> 
+            <select name="player">
+                <% players.forEach(player => { %>
+                  <option value="<%= player.id %>"><%= player.name %></option>
+                <% }); %>
+              </select>
             
-
-            <input type="text" id="playerId" name="playerId"> 
+            <label for="team_id">ชื่อทีม :</label> 
+            <input type="text" id="team_id" name="team_id"> 
             <br>
-            
-            <label for="teamId">teamId:</label> 
-            <input type="text" id="teamId" name="teamId"> 
-            <br>
-            <label for="score">score:</label> 
+            <label for="score">การทำประตู :</label> 
             <input type="text" id="score" name="score"> 
             <br>
             <input type="submit" value="createscore"> 
         </form> 
-        <a href="/">Back to List</a> 
+        <a href="/">ย้อนกลับ</a> 
     </body> 
     </html>

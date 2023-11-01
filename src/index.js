@@ -51,10 +51,10 @@ app.get("/index", (req, res) => {
 app.get("/create", (req, res) => { 
     res.render("create"); 
 }); 
-//เพิ่ม
+
 app.post("/create", async (req, res) => { 
     try { 
-        const data = { name: req.body.name, number: req.body.number }; 
+        const data = { nameplayer: req.body.nameplayer, score: req.body.score }; 
         await axios.post (base_url + '/players', data); 
         res.redirect("/"); 
     } catch (err) { 
@@ -62,7 +62,7 @@ app.post("/create", async (req, res) => {
         res.status(500).send('Error'); 
     } 
 }); 
-//แก้ไข
+
 app.get("/update/:id", async (req, res) => { 
     try { 
         const response = await axios.get( 
@@ -76,7 +76,7 @@ app.get("/update/:id", async (req, res) => {
 
 app.post("/update/:id", async (req, res) => { 
     try { 
-        const data = { name: req.body.name, number: req.body.number }; 
+        const data = { nameplayer: req.body.nameplayer, score: req.body.score }; 
         await axios.put(base_url + '/players/' + req.params.id, data); 
         res.redirect("/"); 
     } catch (err) { 
@@ -85,7 +85,7 @@ app.post("/update/:id", async (req, res) => {
     } 
 }); 
 
-//ลบ
+
 app.get("/delete/:id", async (req, res) => { 
     try { 
         await axios.delete(base_url + '/players/' + req.params.id);
@@ -95,8 +95,6 @@ app.get("/delete/:id", async (req, res) => {
         res.status(500).send('Error'); 
     } 
 }); 
-
-
 app.get("/teams", async (req, res) => { 
   try { 
       const response = await axios.get(base_url + '/teams'); 
@@ -123,7 +121,7 @@ app.get("/createteam", (req, res) => {
 
 app.post("/createteam", async (req, res) => { 
   try { 
-      const data = { team_name: req.body.team_name }; 
+      const data = { teamname: req.body.teamname }; 
       await axios.post (base_url + '/teams', data); 
       res.redirect("/"); 
   } catch (err) { 
@@ -145,7 +143,7 @@ app.get("/updateteam/:id", async (req, res) => {
 
 app.post("/updateteam/:id", async (req, res) => { 
   try { 
-      const data = { team_name: req.body.team_name }; 
+      const data = { teamname: req.body.teamname }; 
       await axios.put(base_url + '/teams/' + req.params.id, data); 
       res.redirect("/"); 
   } catch (err) { 
@@ -154,7 +152,7 @@ app.post("/updateteam/:id", async (req, res) => {
   } 
 }); 
 
-//ลบ
+
 app.get("/deleteteam/:id", async (req, res) => { 
   try { 
       await axios.delete(base_url + '/teams/' + req.params.id);
@@ -197,18 +195,6 @@ app.post("/createscore", async (req, res) => {
       res.status(500).send('Error'); 
   } 
 }); 
-
-
-
-
-app.get('/createscore', (req, res) => {
-    res.render('createscore', { players });
-  });
-  
- 
-  
-
-
 // app.get('/players', (req, res) => {
 //   db.all('SELECT playerId FROM players', [], (err, rows) => {
 //     if (err) {
